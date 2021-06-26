@@ -1,0 +1,30 @@
+<%- include('./partials/blogs-header') -%>
+
+<section class="sect">
+
+<br><br>
+<div class="mb-5 text-center">
+  <h1 id="h1-tag-Blogs">Welcome to my Blogs</h1>
+</div>
+
+
+<div class="container">
+  <% datas.forEach(function(element, index){ %>
+    <h3><%= element.title %></h3>
+    <small>Last updated on: <%= (element.createdBlogsDate).substring(4, 15); %></small>
+    <p><%- (element.content).substring(0, 100); %>
+    </p>
+    <a href="/posts/<%= element.title %>">...read more</a>
+    <hr>
+    <hr>
+  <% }); %>
+</div>
+<hr>
+<br>
+<div class="text-center"><span>End of Blogs</span></div>
+<hr>
+<br><br><br><br><br><br>
+
+</section>
+
+<%- include('./partials/footer') -%>

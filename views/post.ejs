@@ -1,0 +1,114 @@
+<%- include('./partials/blogs-header') -%>
+
+
+<section class="sect">
+
+
+  <div class="mt-5 container">
+    <h3><%= title %></h3>
+    <small>Last updated on: <%= (blogsCreationDate).substring(0,15) %></small>
+
+
+    <% if(user!= undefined && (user.type) == "admin") {%>
+
+    <div class="container">
+      <div class="row">
+
+        <a href="/edit/<%= title %>" class="btn d-block ml-auto">
+          <i class="fa fa-edit" title="Edit"> Edit Post</i>
+        </a>
+
+        <form action="/posts/<%= title %>?_method=DELETE" method="POST">
+          <button postTitle="<%= title %>" class="d-block ml-auto btn delete-article">
+            <i class="fa fa-trash" title="Delete"></i>
+            Delete Post
+          </button>
+        </form>
+
+      </div>
+    </div>
+
+    <% } %>
+
+    <hr>
+    <p><%- content %></p><br><br>
+    <hr>
+    <div class="text-center">
+      <span>
+        Let me know your views about this post in the
+        comments section below —Tauheed Shahid
+      </span>
+    </div>
+    <hr><br>
+  </div>
+  <br>
+
+
+  <!--========== Comment Section ========== -->
+
+  <form method="POST" action="/comment?currentPostTitle=<%= title %>">
+
+    <div class="form-group container">
+      <h3>Comments:</h3>
+
+      <% if(user){ %>
+      <textarea class="form-control" name="comments" id="exampleFormControlTextarea1" rows="3"></textarea>
+
+      <div class="contactbutton mt-5">
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+
+      <% } else { %>
+
+      <span>Please login to comment!!</span> <a href="/login" class="btn btn-primary">Login</a>
+
+      <% } %>
+
+    </div>
+  </form>
+
+
+
+  <% data.forEach(function (elem) { %>
+
+  <div class="container comments">
+
+    <div class="row mt-4">
+
+      <i class="fa fa-3x fa-user"></i>&nbsp;&nbsp;&nbsp;
+      <div class="col-md-8 col-lg-10 col-xl-10 commentContainer">
+
+        <b><%- elem.commentUserName %></b>
+        <span class="badge badge-secondary">
+          <%= (elem.createdCommentDate).toDateString() %>
+        </span>
+        <br>
+        <div class="commentPre"><%= elem.comment %></div>
+
+
+        <% if(user!= undefined && (user.type) == "admin") {%>
+
+        <form action="/comments/<%= elem._id %>?_method=DELETE" method="POST">
+          <button postTitle="<%= title %>" class="d-block btn delete-article">
+            <i class="fa fa-trash" title="Delete"></i>
+            Delete Comment
+          </button>
+        </form>
+
+        <% } %>
+
+
+      </div>
+    </div>
+
+  </div>
+
+  <% }); %>
+
+
+  <div class="last-blog"></div>
+  <div class="last-blog"></div>
+
+</section>
+
+<%- include('./partials/footer') -%>

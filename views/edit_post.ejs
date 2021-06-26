@@ -1,0 +1,33 @@
+<%- include('./partials/blogs-header') -%>
+
+<section class="sect">
+
+
+<div class="m-5 text-center">
+  <h1 id="h1-tag-Blogs">Compose Content</h1>
+</div>
+
+<div class="last-blog container">
+  
+  <form method="POST" action="/edit?title=<%= title %>&content=<%= content %>">
+    <div class="form-group">
+      <input type="text" name="postTitle" class="form-control" id="exampleFormControlInput1"
+        placeholder="Enter the Title" value="<%= title %>">
+    </div>
+
+    <div class="form-group">
+      <textarea class="form-control" name="postContent" placeholder="Enter the Content" rows="5" cols="50" id="editor">
+        <%= content %>
+        </textarea>
+    </div>
+    
+    <div class="contactbutton m-5">
+      <button type="submit" class="btn btn-primary">Update</button>
+    </div>
+  </form>
+  
+</div>
+
+</section>
+
+<%- include('./partials/footer') -%>

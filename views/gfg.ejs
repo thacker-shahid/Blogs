@@ -1,0 +1,32 @@
+<%- include('./partials/blogs-header') -%>
+
+
+<section class="sect">
+
+<br><br>
+<div class="mb-5 text-center">
+  <h1 id="h1-tag-Blogs">Welcome to my GeeksforGeeks Blogs</h1>
+</div>
+
+
+<div class="container">
+  <% gfgArticleArrayVariable.forEach(function(element, index){ %>
+    
+    <ul>
+      <li><%- (element.gfgTitle) %></li>
+      <a href="<%= element.gfgLink %>" target="_blank">...read more</a>
+    </ul>
+    
+    <hr>
+    <hr>
+  <% }); %>
+</div>
+
+<hr>
+<br>
+<div class="text-center"><span>End of Blogs</span></div>
+<hr>
+<br><br><br>
+
+</section>
+<%- include('./partials/footer') -%>
